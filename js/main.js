@@ -1,7 +1,10 @@
+// inizializzo lo script di vue per poter utilizzare il framework
+
 const vue = new Vue(
     {
-        el : 'root',
+        el : '#root',
         data :{
+            // definisco il mio array di oggetti nella quale farò riferimento nel mio html
             items : [
                 {
                     url:'img/01.jpg',
@@ -30,22 +33,26 @@ const vue = new Vue(
                 }                
             ],
 
-            active: 0,
+            indicatore: 0,
         
         },
 
+        //definisco due funzioni per lo scorrere delle immagini nella parte thumbs
+
         methods: {
             previous (){
-                this.active--;
-                if (this.active < 0){
-                    this.active = items.lenght - 1;
+
+                if (this.indicatore <= 0){
+                    this.indicatore = items.length - 1;
+                } else{
+                    this.indicatore--;
                 }
             },
 
             next (){
-                this.active++
-                if (this.active == this.items.lenght){
-                    this.active = 0;
+                this.indicatore++
+                if (this.indicatore == this.items.length){
+                    this.indicatore = 0;
                 }
             }
         }
