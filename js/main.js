@@ -34,6 +34,7 @@ const vue = new Vue(
             ],
 
             indicatore: 0,
+            clock : ""
         
         },
 
@@ -54,7 +55,22 @@ const vue = new Vue(
                 if (this.indicatore == this.items.length){
                     this.indicatore = 0;
                 }
-            }
+            },
+
+            gestioneClick(){
+                const img = document.querySelector('.thumb');
+                img.addEventListener('click', function (){
+                    items.url = items[indicatore].url;              
+                }
+                )
+            },
+
+            gestioneDelTempo () {
+                this.clock = setInterval(this.next, 3000);             
+            },
+            stopGestioneDelTempo (){
+                clearInterval(this.clock);
+            },
         }
     }
 );

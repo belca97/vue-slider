@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-   <div class="container" id="root">
+   <div class="container" id="root"  @mouseover="stopGestioneDelTempo" @mouseleave="gestioneDelTempo">
         <div class="items">
             
             <div class="item">
@@ -26,7 +26,7 @@
             <div class="prev" @click="previous"></div>
             <div class="next" @click="next"></div>
             
-            <div class="thumb" :class="indice == indicatore?'active' :''" v-for="(items, indice) in items">
+            <div class="thumb" :class="indice == indicatore?'active' :''"  v-for="(items, indice) in items">
                 <img :src="items.url" alt="">
             </div> 
         
