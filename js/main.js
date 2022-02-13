@@ -38,15 +38,18 @@ const vue = new Vue(
         
         },
 
+        mounted: function (){
+            this.gestioneDelTempo();
+        },
+
         //definisco due funzioni per lo scorrere delle immagini nella parte thumbs
 
         methods: {
             previous (){
 
-                if (this.indicatore <= 0){
-                    this.indicatore = items.length - 1;
-                } else{
-                    this.indicatore--;
+                this.indicatore--;
+                if (this.indicatore < 0){
+                    this.indicatore = this.items.length - 1;
                 }
             },
 
@@ -57,12 +60,8 @@ const vue = new Vue(
                 }
             },
 
-            gestioneClick(){
-                const img = document.querySelector('.thumb');
-                img.addEventListener('click', function (){
-                    items.url = items[indicatore].url;              
-                }
-                )
+            gestioneClick(indice){
+                this.indicatore = indice;
             },
 
             gestioneDelTempo () {
@@ -74,74 +73,3 @@ const vue = new Vue(
         }
     }
 );
-
-/*
-
-const itemsRef = document.getElementsByClassName('items')[0];
-const thumbsRef = document.getElementsByClassName('thumbs')[0];
-let item = '';
-let thumb = '';
-let active = 1;
-
-for (let i = 0; i < items.length; i++) {
-    item += `
-        <div class="item">
-            <img src="${items[i].url}" alt="">
-            <div class="text">
-                <h3>${items[i].name}</h3>
-                <p>${items[i].text}</p>
-            </div>
-        </div>`
-    thumb += `
-        <div class="thumb">
-            <img src="${items[i].url}" alt="">
-        </div>
-    `
-}
-
-itemsRef.innerHTML = item;
-document.getElementsByClassName('item')[active].classList.add('active');
-
-thumbsRef.innerHTML += thumb;
-document.getElementsByClassName('thumb')[active].classList.add('active');
-
-const prev = document.querySelector('.prev');
-prev.addEventListener('click', function() {
-    if(active == 0) {
-        active = items.length - 1; 
-
-        document.querySelector('.item.active').classList.remove('active');
-        document.getElementsByClassName('item')[active].classList.add('active');
-
-        document.querySelector('.thumb.active').classList.remove('active');
-        document.getElementsByClassName('thumb')[active].classList.add('active');
-    } else if(active < items.length) {
-        --active
-        document.querySelector('.item.active').classList.remove('active');
-        document.getElementsByClassName('item')[active].classList.add('active');
-
-        document.querySelector('.thumb.active').classList.remove('active');
-        document.getElementsByClassName('thumb')[active].classList.add('active');
-    } 
-});
-
-const next = document.querySelector('.next');
-next.addEventListener('click', function() {
-    if(active < items.length - 1) {
-        ++active
-        document.querySelector('.item.active').classList.remove('active');
-        document.getElementsByClassName('item')[active].classList.add('active');
-
-        document.querySelector('.thumb.active').classList.remove('active');
-        document.getElementsByClassName('thumb')[active].classList.add('active');
-    } else if(active == items.length - 1) { 
-        active = 0;
-        document.querySelector('.item.active').classList.remove('active');
-        document.getElementsByClassName('item')[active].classList.add('active');
-
-        document.querySelector('.thumb.active').classList.remove('active');
-        document.getElementsByClassName('thumb')[active].classList.add('active');
-    }
-});
-
-*/
